@@ -36,11 +36,9 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== SCREENS ===== */
 .screen { display: none; }
 .screen.active { display: flex; flex-direction: column; min-height: 100vh; }
 
-/* ===== TITLE SCREEN ===== */
 #titleScreen {
   align-items: center;
   justify-content: center;
@@ -105,7 +103,6 @@ body {
 }
 .start-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,180,50,0.5); }
 
-/* ===== PLAYER SETUP ===== */
 #setupScreen {
   align-items: center;
   justify-content: center;
@@ -143,15 +140,15 @@ body {
   transition: border-color 0.2s;
 }
 .setup-input:focus { border-color: var(--yellow); }
-.player-count-btns { display: flex; gap: 10px; }
+.player-count-btns { display: flex; gap: 8px; }
 .count-btn {
   flex: 1;
-  padding: 12px;
+  padding: 10px 4px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 10px;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
@@ -160,6 +157,13 @@ body {
 .ai-players-list { display: flex; flex-direction: column; gap: 10px; }
 .ai-player-row { display: flex; gap: 10px; align-items: center; }
 .ai-player-row .setup-input { flex: 1; }
+.ai-player-num {
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
 .deal-btn {
   width: 100%;
   padding: 16px;
@@ -176,7 +180,6 @@ body {
 }
 .deal-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-/* ===== GAME SCREEN ===== */
 #gameScreen {
   padding: 0;
   flex-direction: column;
@@ -209,7 +212,6 @@ body {
   color: var(--muted);
 }
 
-/* Other players area */
 .opponents-area {
   display: flex;
   gap: 12px;
@@ -264,7 +266,6 @@ body {
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
 
-/* Center play area */
 .play-area {
   flex: 1;
   display: flex;
@@ -283,7 +284,6 @@ body {
 }
 .pile-label { font-size: 10px; letter-spacing: 0.2em; color: var(--muted); }
 
-/* CARD base */
 .card {
   width: 80px;
   height: 120px;
@@ -309,7 +309,6 @@ body {
 .card.playable:hover { transform: translateY(-8px); }
 .card.not-playable { opacity: 0.4; cursor: not-allowed; }
 .card.not-playable:hover { transform: none; }
-
 .card.blue { background: linear-gradient(135deg, #1a4a8a, #2a6acc); color: white; }
 .card.red { background: linear-gradient(135deg, #8a1a1a, #cc2a2a); color: white; }
 .card.yellow { background: linear-gradient(135deg, #6a5000, #c49000); color: white; }
@@ -333,7 +332,6 @@ body {
 .card-special { font-size: 22px; line-height: 1; margin-bottom: 4px; }
 .card-special-name { font-size: 8px; letter-spacing: 0.1em; opacity: 0.8; }
 
-/* top card display */
 .top-card-display {
   width: 100px;
   height: 150px;
@@ -351,7 +349,6 @@ body {
   line-height: 1.4;
   transition: all 0.3s;
 }
-/* Apply same color gradients to top-card-display as .card */
 .top-card-display.blue { background: linear-gradient(135deg, #1a4a8a, #2a6acc); color: white; border-color: #4a9eff; }
 .top-card-display.red  { background: linear-gradient(135deg, #8a1a1a, #cc2a2a); color: white; border-color: #ff5a5a; }
 .top-card-display.yellow { background: linear-gradient(135deg, #6a5000, #c49000); color: white; border-color: #ffd93d; }
@@ -359,7 +356,6 @@ body {
 .top-card-display.orange { background: linear-gradient(135deg, #6a2a00, #c05000); color: white; border-color: #ff8c42; }
 .top-card-display.black  { background: linear-gradient(135deg, #1a1a1a, #333);    color: #ffd93d; border-color: #555; }
 
-/* Current color indicator banner */
 .color-indicator {
   display: flex;
   align-items: center;
@@ -416,7 +412,6 @@ body {
   padding: 2px 8px;
 }
 
-/* Player hand */
 .player-area {
   background: var(--surface);
   border-top: 1px solid var(--border);
@@ -460,7 +455,6 @@ body {
   scrollbar-color: var(--border) transparent;
 }
 
-/* Bottom action bar */
 .action-bar {
   display: flex;
   gap: 10px;
@@ -493,8 +487,20 @@ body {
 }
 .btn-pass:hover { border-color: var(--muted); color: var(--text); }
 .btn-pass:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-callout {
+  background: linear-gradient(135deg, #7b2fff, #b44fff);
+  color: white;
+}
+.btn-callout:not(:disabled) {
+  animation: callout-pulse 0.8s ease-in-out infinite alternate;
+}
+.btn-callout:hover:not(:disabled) { opacity: 0.9; transform: scale(1.03); }
+.btn-callout:disabled { opacity: 0.3; cursor: not-allowed; }
+@keyframes callout-pulse {
+  from { box-shadow: 0 0 8px rgba(123,47,255,0.4); }
+  to   { box-shadow: 0 0 20px rgba(123,47,255,0.9); }
+}
 
-/* Log area */
 .game-log {
   padding: 8px 20px;
   background: rgba(0,0,0,0.3);
@@ -510,7 +516,6 @@ body {
 .log-text.error { color: var(--red); }
 .log-text.success { color: var(--green); }
 
-/* Color picker modal */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -556,7 +561,6 @@ body {
 .color-btn.green { background: var(--green-bg); border-color: var(--green); color: var(--green); }
 .color-btn.orange { background: var(--orange-bg); border-color: var(--orange); color: var(--orange); }
 
-/* Win screen */
 #winScreen {
   align-items: center;
   justify-content: center;
@@ -589,7 +593,6 @@ body {
 }
 .play-again-btn:hover { transform: translateY(-3px); }
 
-/* Turn indicator overlay */
 .turn-overlay {
   display: none;
   position: fixed;
@@ -622,7 +625,6 @@ body {
   cursor: pointer;
 }
 
-/* Rule reference */
 .rule-btn {
   padding: 6px 14px;
   background: transparent;
@@ -676,6 +678,29 @@ body {
   font-family: 'Zen Kaku Gothic New', sans-serif;
   margin-top: 12px;
 }
+
+.opponent-card.callout-target {
+  border-color: #b44fff;
+  box-shadow: 0 0 16px rgba(180,79,255,0.5);
+  animation: callout-glow 0.8s ease-in-out infinite alternate;
+}
+@keyframes callout-glow {
+  from { box-shadow: 0 0 8px rgba(180,79,255,0.4); }
+  to   { box-shadow: 0 0 24px rgba(180,79,255,0.9); }
+}
+.callout-badge {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background: linear-gradient(135deg, #7b2fff, #b44fff);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+  animation: pulse 0.8s ease-in-out infinite;
+}
 </style>
 </head>
 <body>
@@ -708,10 +733,12 @@ body {
         <button class="count-btn" onclick="setAiCount(1)">1人</button>
         <button class="count-btn active" onclick="setAiCount(2)">2人</button>
         <button class="count-btn" onclick="setAiCount(3)">3人</button>
+        <button class="count-btn" onclick="setAiCount(4)">4人</button>
+        <button class="count-btn" onclick="setAiCount(5)">5人</button>
       </div>
     </div>
     <div id="aiNameArea">
-      <div class="setup-label">AIの名前</div>
+      <div class="setup-label">AIの名前（自由に変更できます）</div>
       <div class="ai-players-list" id="aiNameList"></div>
     </div>
     <button class="deal-btn" onclick="startGame()">🃏 カードを配る</button>
@@ -761,6 +788,7 @@ body {
 
   <div class="action-bar">
     <button class="action-btn btn-fleet" id="fleetBtn" onclick="declareFleet()" disabled>🏁 フリート！！</button>
+    <button class="action-btn btn-callout" id="calloutBtn" onclick="calloutFleet()" disabled>👆 指摘！</button>
     <button class="action-btn btn-pass" id="passBtn" onclick="endTurn()" disabled>パス</button>
   </div>
 </div>
@@ -835,160 +863,141 @@ body {
   </div>
 </div>
 
+
 <script>
 // ===== CARD DATA =====
 const CREDO_CHAINS = [
-  // 青: Sincere gratitude
-  { id: 'blue_en', color: 'blue', phrases: ['Sincere', 'gratitude'] },
-  { id: 'blue_jp', color: 'blue', phrases: ['いつでも', '感謝の心を', '忘れない'] },
-  // 赤: Stay cool and stylish
-  { id: 'red_en', color: 'red', phrases: ['Stay', 'cool', 'and', 'stylish'] },
-  { id: 'red_jp', color: 'red', phrases: ['かっこよく', 'いよう！！'] },
-  // 黄: Thrill and Excitement
-  { id: 'yellow_en', color: 'yellow', phrases: ['Thrill and Excitement', 'are our', 'ultimate goals.'] },
-  { id: 'yellow_jp', color: 'yellow', phrases: ['ワクワクを', '追求しよう！！'] },
-  // 緑: Smile is contagious
-  { id: 'green_en', color: 'green', phrases: ['Smile', 'is', 'contagious'] },
-  { id: 'green_jp', color: 'green', phrases: ['笑顔の輪を', '広げよう！！'] },
-  // オレンジ: Always 1% forward
-  { id: 'orange_en', color: 'orange', phrases: ['Always', '1%', 'forward'] },
-  { id: 'orange_jp', color: 'orange', phrases: ['常に', '101％', '頑張ろう！！'] },
+  { id: 'blue_en',    color: 'blue',   phrases: ['Sincere', 'gratitude'] },
+  { id: 'blue_jp',    color: 'blue',   phrases: ['いつでも', '感謝の心を', '忘れない'] },
+  { id: 'red_en',     color: 'red',    phrases: ['Stay', 'cool', 'and', 'stylish'] },
+  { id: 'red_jp',     color: 'red',    phrases: ['かっこよく', 'いよう！！'] },
+  { id: 'yellow_en',  color: 'yellow', phrases: ['Thrill and Excitement', 'are our', 'ultimate goals.'] },
+  { id: 'yellow_jp',  color: 'yellow', phrases: ['ワクワクを', '追求しよう！！'] },
+  { id: 'green_en',   color: 'green',  phrases: ['Smile', 'is', 'contagious'] },
+  { id: 'green_jp',   color: 'green',  phrases: ['笑顔の輪を', '広げよう！！'] },
+  { id: 'orange_en',  color: 'orange', phrases: ['Always', '1%', 'forward'] },
+  { id: 'orange_jp',  color: 'orange', phrases: ['常に', '101％', '頑張ろう！！'] },
 ];
 
-// Build all card objects (3 copies each)
 function buildDeck() {
   const deck = [];
   let uid = 0;
-
-  // Text cards: 3 copies of each phrase
-  CREDO_CHAINS.forEach(chain => {
-    chain.phrases.forEach((phrase, idx) => {
-      for (let c = 0; c < 3; c++) {
+  CREDO_CHAINS.forEach(function(chain) {
+    chain.phrases.forEach(function(phrase, idx) {
+      for (var c = 0; c < 3; c++) {
         deck.push({
-          id: uid++,
-          type: 'text',
-          color: chain.color,
-          chainId: chain.id,
-          phraseIndex: idx,
-          text: phrase,
-          isFirst: idx === 0,
-          isLast: idx === chain.phrases.length - 1,
-          totalInChain: chain.phrases.length,
+          id: uid++, type: 'text', color: chain.color,
+          chainId: chain.id, phraseIndex: idx, text: phrase,
+          isFirst: idx === 0, isLast: idx === chain.phrases.length - 1,
+          totalInChain: chain.phrases.length
         });
       }
     });
   });
-
-  // Special cards
-  // ワイルド古里: 8 black cards
-  for (let i = 0; i < 8; i++) {
+  for (var i = 0; i < 8; i++) {
     deck.push({ id: uid++, type: 'wild', color: 'black', text: 'ワイルド\n古里', special: 'wild' });
   }
-  // JP: 1 per color (5 colors)
-  ['blue','red','yellow','green','orange'].forEach(color => {
-    deck.push({ id: uid++, type: 'special', color, text: 'JP', special: 'draw2' });
+  ['blue','red','yellow','green','orange'].forEach(function(color) {
+    deck.push({ id: uid++, type: 'special', color: color, text: 'JP', special: 'draw2' });
   });
-  // 栗原さん: 1 per color
-  ['blue','red','yellow','green','orange'].forEach(color => {
-    deck.push({ id: uid++, type: 'special', color, text: '栗原さん', special: 'reverse' });
+  ['blue','red','yellow','green','orange'].forEach(function(color) {
+    deck.push({ id: uid++, type: 'special', color: color, text: '栗原さん', special: 'reverse' });
   });
-
   return shuffle(deck);
 }
 
 function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
   }
   return arr;
 }
 
 // ===== GAME STATE =====
-let state = {};
+var state = {};
 
 function initState(players) {
-  const deck = buildDeck();
-  const hands = players.map(() => []);
-
-  // Deal 7 cards each
-  for (let i = 0; i < 7; i++) {
-    players.forEach((_, pi) => hands[pi].push(deck.pop()));
+  var deck = buildDeck();
+  var hands = players.map(function() { return []; });
+  for (var i = 0; i < 7; i++) {
+    players.forEach(function(_, pi) { hands[pi].push(deck.pop()); });
   }
-
-  // First card must be a text card (not special)
-  let startIndex = deck.findIndex(c => c.type === 'text');
-  const [startCard] = deck.splice(startIndex, 1);
-
+  var startIndex = deck.findIndex(function(c) { return c.type === 'text'; });
+  var startCard = deck.splice(startIndex, 1)[0];
   state = {
-    players,
-    hands,
-    deck,
+    players: players,
+    hands: hands,
+    deck: deck,
     discard: [startCard],
     currentPlayer: 0,
-    direction: 1, // 1 = clockwise, -1 = counter
-    wildColor: null, // color override after wild
+    direction: 1,
+    wildColor: null,
     drawnThisTurn: false,
-    fleetDeclared: [], // indices who declared fleet
-    fleetPending: false, // player has 1 card but hasn't declared yet
+    fleetDeclared: [],
     gameOver: false,
-    mustDrawCount: 0, // for JP stacking
-    lastActions: {}, // playerIndex -> { text, color } 直前の行動
+    lastActions: {},
+    calloutTargets: []
   };
 }
 
-// ===== PLAYABILITY LOGIC =====
+// ===== PLAYABILITY =====
 function getTopCard() { return state.discard[state.discard.length - 1]; }
+
 function getEffectiveColor() {
   if (state.wildColor) return state.wildColor;
   return getTopCard().color;
 }
 
-// Get the chain object for a card
-function getChain(card) {
-  if (card.type !== 'text') return null;
-  return CREDO_CHAINS.find(c => c.id === card.chainId);
-}
-
-// Check if cardB can follow cardA as a phrase continuation
-function canChain(cardA, cardB) {
-  if (cardA.type !== 'text' || cardB.type !== 'text') return false;
-  if (!cardA.isLast) return false; // cardA must be the last in its chain
-
-  // Any chain's first card can follow
-  return cardB.isFirst;
-}
-
 function canPlay(card, forPlayer) {
   if (state.gameOver) return false;
-  if (forPlayer !== state.currentPlayer && forPlayer !== undefined) return false;
-
-  const top = getTopCard();
-  const effectiveColor = getEffectiveColor();
-
-  // Special cards: must match effective color (unless wild)
-  if (card.type === 'wild') return true; // Wild can always be played on matching color? 
-  // Actually wild古里: must match color like other specials
-  if (card.type === 'wild') {
-    return card.color === effectiveColor || effectiveColor === 'black';
-  }
-
-  if (card.type === 'special') {
-    return card.color === effectiveColor;
-  }
-
-  // Text cards
-  // 1. Same color
-  if (card.color === effectiveColor) return true;
-  // 2. Phrase continuation (color override)
+  if (forPlayer !== undefined && forPlayer !== state.currentPlayer) return false;
+  var top = getTopCard();
+  var effColor = getEffectiveColor();
+  if (card.type === 'wild') return true;
+  if (card.type === 'special') return card.color === effColor;
+  if (card.color === effColor) return true;
   if (top.type === 'text' && top.isLast && card.isFirst) return true;
-
   return false;
 }
 
+// ===== AI NAMES: 100個の「日本語＋カタカナ英語」ペア =====
+// 日本人に馴染みのある単語を選定。ゲーム開始ごとにランダムに5つ選ばれます。
+var AI_NAMES = [
+  '犬ドッグ','猫キャット','米ライス','茶碗マグカップ','仕事ジョブ',
+  '空スカイ','海オーシャン','山マウンテン','花フラワー','木ツリー',
+  '火ファイア','水ウォーター','風ウィンド','雷サンダー','雪スノー',
+  '太陽サン','月ムーン','星スター','雲クラウド','虹レインボー',
+  '鳥バード','魚フィッシュ','熊ベアー','馬ホース','虎タイガー',
+  '象エレファント','兎ラビット','狐フォックス','狼ウルフ','鷹イーグル',
+  '春スプリング','夏サマー','秋オータム','冬ウィンター','朝モーニング',
+  '昼ヌーン','夜ナイト','夕暮れサンセット','夜明けサンライズ','嵐ストーム',
+  '電話フォン','椅子チェア','机デスク','窓ウィンドウ','鍵キー',
+  '傘アンブレラ','帽子ハット','靴シューズ','財布ウォレット','鞄バッグ',
+  '本ブック','紙ペーパー','鉛筆ペンシル','消しゴムイレーサー','地図マップ',
+  'パンブレッド','卵エッグ','肉ミート','野菜ベジタブル','果物フルーツ',
+  'お茶ティー','珈琲コーヒー','牛乳ミルク','砂糖シュガー','塩ソルト',
+  '家ホーム','庭ガーデン','橋ブリッジ','道ロード','公園パーク',
+  '学校スクール','病院ホスピタル','駅ステーション','空港エアポート','港ポート',
+  '笑顔スマイル','涙ティアー','夢ドリーム','愛ラブ','友情フレンドシップ',
+  '音楽ミュージック','踊りダンス','絵画ペインティング','映画ムービー','劇場シアター',
+  '勝利ビクトリー','挑戦チャレンジ','希望ホープ','自由フリーダム','平和ピース',
+  '金ゴールド','銀シルバー','宝石ジュエル','王冠クラウン','剣ソード',
+  '船シップ','飛行機プレーン','ロケットロケット','車カー','電車トレイン'
+];
+
+function getRandomAiNames(n) {
+  var pool = AI_NAMES.slice();
+  shuffle(pool);
+  var names = [];
+  for (var i = 0; i < n && i < pool.length; i++) {
+    names.push(pool[i]);
+  }
+  return names;
+}
+
 // ===== SETUP UI =====
-let aiCount = 2;
-const defaultAiNames = ['古里さん', '栗原さん', 'JPさん'];
+var aiCount = 2;
 
 function showSetup() {
   showScreen('setupScreen');
@@ -997,44 +1006,44 @@ function showSetup() {
 
 function setAiCount(n) {
   aiCount = n;
-  document.querySelectorAll('.count-btn').forEach((btn, i) => {
+  document.querySelectorAll('.count-btn').forEach(function(btn, i) {
     btn.classList.toggle('active', i === n - 1);
   });
   renderAiNames();
 }
 
 function renderAiNames() {
-  const list = document.getElementById('aiNameList');
+  var list = document.getElementById('aiNameList');
   list.innerHTML = '';
-  for (let i = 0; i < aiCount; i++) {
-    const row = document.createElement('div');
+  var names = getRandomAiNames(aiCount);
+  for (var i = 0; i < aiCount; i++) {
+    var row = document.createElement('div');
     row.className = 'ai-player-row';
-    row.innerHTML = `<input class="setup-input" id="aiName${i}" value="${defaultAiNames[i]}" placeholder="AI ${i+1}">`;
+    row.innerHTML =
+      '<span class="ai-player-num">AI' + (i+1) + '</span>' +
+      '<input class="setup-input" id="aiName' + i + '" value="' + names[i] + '" placeholder="AI ' + (i+1) + '">';
     list.appendChild(row);
   }
 }
 
 function startGame() {
-  const myName = document.getElementById('playerName').value || 'プレイヤー1';
-  const players = [{ name: myName, isHuman: true }];
-  for (let i = 0; i < aiCount; i++) {
-    const n = document.getElementById(`aiName${i}`)?.value || `AI${i+1}`;
+  var myName = document.getElementById('playerName').value || 'プレイヤー1';
+  var players = [{ name: myName, isHuman: true }];
+  for (var i = 0; i < aiCount; i++) {
+    var el = document.getElementById('aiName' + i);
+    var n = el ? el.value : ('AI' + (i+1));
     players.push({ name: n, isHuman: false });
   }
-
   initState(players);
   showScreen('gameScreen');
   renderAll();
-  setLog(`ゲーム開始！${players[0].name}のターンです`, 'highlight');
-
-  if (!state.players[0].isHuman) {
-    setTimeout(aiTurn, 800);
-  }
+  setLog('ゲーム開始！' + players[0].name + 'のターンです', 'highlight');
+  if (!state.players[0].isHuman) setTimeout(aiTurn, 800);
 }
 
 // ===== RENDERING =====
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
 }
 
@@ -1048,81 +1057,76 @@ function renderAll() {
 }
 
 function colorLabel(color) {
-  const map = { blue:'青', red:'赤', yellow:'黄', green:'緑', orange:'橙', black:'黒' };
+  var map = { blue:'青', red:'赤', yellow:'黄', green:'緑', orange:'橙', black:'黒' };
   return map[color] || color;
 }
 
 function renderOpponents() {
-  const area = document.getElementById('opponentsArea');
+  var area = document.getElementById('opponentsArea');
   area.innerHTML = '';
-  state.players.forEach((p, i) => {
+  var colorMap = { blue:'#4a9eff', red:'#ff5a5a', yellow:'#ffd93d', green:'#4adf8a', orange:'#ff8c42', black:'#aaa', draw:'#8a8070' };
+  state.players.forEach(function(p, i) {
     if (p.isHuman) return;
-    const div = document.createElement('div');
-    div.className = 'opponent-card' + (i === state.currentPlayer ? ' active-turn' : '');
-    const hasFleet = state.fleetDeclared.includes(i);
-    const action = state.lastActions[i];
-    const colorMap = { blue:'#4a9eff', red:'#ff5a5a', yellow:'#ffd93d', green:'#4adf8a', orange:'#ff8c42', black:'#aaa', draw:'#8a8070' };
-    const actionHTML = action
-      ? `<div class="opponent-last-action" style="border-color:${colorMap[action.color]||'#555'};color:${colorMap[action.color]||'#aaa'}">${action.text}</div>`
-      : `<div class="opponent-last-action" style="border-color:var(--border);color:var(--muted)">まだ未行動</div>`;
-    div.innerHTML = `
-      ${hasFleet ? '<div class="fleet-badge">フリート！</div>' : ''}
-      <div class="opponent-name">${p.name}</div>
-      <div class="opponent-hand-count">${state.hands[i].length}<span>枚</span></div>
-      ${actionHTML}
-    `;
+    var div = document.createElement('div');
+    var isActive = i === state.currentPlayer;
+    var hasFleet = state.fleetDeclared.indexOf(i) !== -1;
+    var isCalloutTarget = state.calloutTargets.indexOf(i) !== -1;
+    div.className = 'opponent-card' + (isActive ? ' active-turn' : '') + (isCalloutTarget ? ' callout-target' : '');
+    var action = state.lastActions[i];
+    var actionColor = action ? (colorMap[action.color] || '#555') : 'var(--border)';
+    var actionText = action ? action.text : 'まだ未行動';
+    var fleetBadge = hasFleet ? '<div class="fleet-badge">フリート！</div>' : '';
+    var calloutBadge = isCalloutTarget ? '<div class="callout-badge">フリート忘れ!?</div>' : '';
+    div.innerHTML = fleetBadge + calloutBadge +
+      '<div class="opponent-name">' + p.name + '</div>' +
+      '<div class="opponent-hand-count">' + state.hands[i].length + '<span>枚</span></div>' +
+      '<div class="opponent-last-action" style="border-color:' + actionColor + ';color:' + actionColor + '">' + actionText + '</div>';
     area.appendChild(div);
   });
 }
 
 function renderTopCard() {
-  const top = getTopCard();
-  const el = document.getElementById('topCardDisplay');
-  const effColor = getEffectiveColor();
-  el.className = `top-card-display ${effColor}`;
-
+  var top = getTopCard();
+  var el = document.getElementById('topCardDisplay');
+  var effColor = getEffectiveColor();
+  el.className = 'top-card-display ' + effColor;
   if (top.type === 'wild') {
-    el.innerHTML = `<div class="card-special">🖤</div><div class="card-text">${top.text}</div>${state.wildColor ? `<div class="card-special-name" style="margin-top:4px">→ ${colorLabel(state.wildColor)}</div>` : ''}`;
+    el.innerHTML = '<div class="card-special">🖤</div><div class="card-text">' + top.text + '</div>' +
+      (state.wildColor ? '<div class="card-special-name" style="margin-top:4px">→ ' + colorLabel(state.wildColor) + '</div>' : '');
   } else if (top.type === 'special') {
-    const icon = top.special === 'draw2' ? '＋２' : '⟲';
-    el.innerHTML = `<div class="card-special" style="font-size:28px">${icon}</div><div class="card-text">${top.text}</div>`;
+    var icon = top.special === 'draw2' ? '＋２' : '⟲';
+    el.innerHTML = '<div class="card-special" style="font-size:28px">' + icon + '</div><div class="card-text">' + top.text + '</div>';
   } else {
-    el.innerHTML = `<div class="card-text" style="font-size:13px">${top.text}</div>`;
+    el.innerHTML = '<div class="card-text" style="font-size:13px">' + top.text + '</div>';
   }
-
-  // Update color indicator banner
-  const colorEmoji = { blue:'🔵', red:'🔴', yellow:'🟡', green:'🟢', orange:'🟠', black:'⚫' };
-  const colorName = { blue:'青', red:'赤', yellow:'黄', green:'緑', orange:'オレンジ', black:'指定なし' };
-  const ind = document.getElementById('colorIndicator');
-  ind.className = `color-indicator ${effColor}`;
-  ind.innerHTML = `${colorEmoji[effColor]} 有効色：<strong>${colorName[effColor]}</strong>`;
+  var colorEmoji = { blue:'🔵', red:'🔴', yellow:'🟡', green:'🟢', orange:'🟠', black:'⚫' };
+  var colorName = { blue:'青', red:'赤', yellow:'黄', green:'緑', orange:'オレンジ', black:'指定なし' };
+  var ind = document.getElementById('colorIndicator');
+  ind.className = 'color-indicator ' + effColor;
+  ind.innerHTML = (colorEmoji[effColor] || '') + ' 有効色：<strong>' + (colorName[effColor] || effColor) + '</strong>';
 }
 
 function renderHand() {
-  const container = document.getElementById('handContainer');
+  var container = document.getElementById('handContainer');
   container.innerHTML = '';
-  const hand = state.hands[0];
-  const isMyTurn = state.currentPlayer === 0;
-  const colorEmoji = { blue:'🔵', red:'🔴', yellow:'🟡', green:'🟢', orange:'🟠', black:'⚫' };
-
-  hand.forEach((card, idx) => {
-    const div = document.createElement('div');
-    const playable = isMyTurn && canPlay(card, 0);
-    div.className = `card ${card.color}${playable ? ' playable' : ' not-playable'}`;
-
-    const colorDot = `<div style="position:absolute;top:4px;left:4px;font-size:8px;opacity:0.7">${colorEmoji[card.color]||''}</div>`;
-
+  var hand = state.hands[0];
+  var isMyTurn = state.currentPlayer === 0;
+  var colorEmoji = { blue:'🔵', red:'🔴', yellow:'🟡', green:'🟢', orange:'🟠', black:'⚫' };
+  hand.forEach(function(card, idx) {
+    var div = document.createElement('div');
+    var playable = isMyTurn && canPlay(card, 0);
+    div.className = 'card ' + card.color + (playable ? ' playable' : ' not-playable');
+    var dot = '<div style="position:absolute;top:4px;left:4px;font-size:8px;opacity:0.7">' + (colorEmoji[card.color] || '') + '</div>';
     if (card.type === 'wild') {
-      div.innerHTML = `${colorDot}<div class="card-special">🖤</div><div class="card-text">${card.text}</div>`;
+      div.innerHTML = dot + '<div class="card-special">🖤</div><div class="card-text">' + card.text + '</div>';
     } else if (card.type === 'special') {
-      const icon = card.special === 'draw2' ? '＋２' : '⟲';
-      div.innerHTML = `${colorDot}<div class="card-special">${icon}</div><div class="card-text" style="font-size:8px">${card.text}</div>`;
+      var icon = card.special === 'draw2' ? '＋２' : '⟲';
+      div.innerHTML = dot + '<div class="card-special">' + icon + '</div><div class="card-text" style="font-size:8px">' + card.text + '</div>';
     } else {
-      div.innerHTML = `${colorDot}<div class="card-text">${card.text}</div>`;
+      div.innerHTML = dot + '<div class="card-text">' + card.text + '</div>';
     }
-
     if (playable) {
-      div.onclick = () => playCard(0, idx);
+      (function(i) { div.onclick = function() { playCard(0, i); }; })(idx);
     }
     container.appendChild(div);
   });
@@ -1133,152 +1137,140 @@ function renderDeckCount() {
 }
 
 function renderButtons() {
-  const isMyTurn = state.currentPlayer === 0;
-  const passBtn = document.getElementById('passBtn');
-  const fleetBtn = document.getElementById('fleetBtn');
-  const drawPile = document.getElementById('drawPile');
-
+  var isMyTurn = state.currentPlayer === 0;
+  var passBtn = document.getElementById('passBtn');
+  var fleetBtn = document.getElementById('fleetBtn');
+  var calloutBtn = document.getElementById('calloutBtn');
+  var drawPile = document.getElementById('drawPile');
   passBtn.disabled = !(isMyTurn && state.drawnThisTurn);
   drawPile.classList.toggle('disabled', !isMyTurn || state.drawnThisTurn);
-
-  // Fleet button: show when I have exactly 1 card and haven't declared
-  const shouldShowFleet = state.hands[0].length === 1 && !state.fleetDeclared.includes(0);
+  var shouldShowFleet = state.hands[0].length === 1 && state.fleetDeclared.indexOf(0) === -1;
   fleetBtn.disabled = !shouldShowFleet;
+  var myCalloutTargets = state.calloutTargets.filter(function(i) { return i !== 0; });
+  calloutBtn.disabled = myCalloutTargets.length === 0;
+  if (myCalloutTargets.length > 0) {
+    var names = myCalloutTargets.map(function(i) { return state.players[i].name; }).join('・');
+    calloutBtn.textContent = '👆 指摘！(' + names + ')';
+  } else {
+    calloutBtn.textContent = '👆 指摘！';
+  }
 }
 
 function renderDirection() {
-  document.getElementById('directionBadge').textContent =
-    state.direction === 1 ? '→ 時計回り' : '← 反時計回り';
+  document.getElementById('directionBadge').textContent = state.direction === 1 ? '→ 時計回り' : '← 反時計回り';
 }
 
 // ===== PLAY LOGIC =====
 function playCard(playerIdx, cardIdx) {
   if (state.gameOver) return;
   if (playerIdx !== state.currentPlayer) return;
-
-  const card = state.hands[playerIdx][cardIdx];
-  if (!canPlay(card, playerIdx)) {
-    setLog('そのカードは出せません！', 'error');
-    return;
-  }
-
-  // Remove from hand
+  var card = state.hands[playerIdx][cardIdx];
+  if (!canPlay(card, playerIdx)) { setLog('そのカードは出せません！', 'error'); return; }
   state.hands[playerIdx].splice(cardIdx, 1);
   state.discard.push(card);
   state.wildColor = null;
   state.drawnThisTurn = false;
-
-  const playerName = state.players[playerIdx].name;
-
-  // Check fleet penalty: had 1 card (now 0 means won), but 2 cards -> now 1 means need to declare
-  // Fleet check is separate
-
-  // Handle special effects
+  var playerName = state.players[playerIdx].name;
   if (card.special === 'wild') {
-    setLog(`${playerName} がワイルド古里を出しました！色を選んでください`, 'highlight');
     if (playerIdx === 0) {
-      showColorModal(playerIdx);
+      setLog(playerName + ' がワイルド古里を出しました！色を選んでください', 'highlight');
+      showColorModal();
     } else {
-      // AI picks color
-      const aiColor = aiChooseColor(playerIdx);
+      var aiColor = aiChooseColor(playerIdx);
       state.wildColor = aiColor;
-      recordAction(playerIdx, `🖤 ワイルド古里 → ${colorLabel(aiColor)}`, 'black');
-      setLog(`${playerName} がワイルド古里を出しました！→ ${colorLabel(aiColor)}`, 'highlight');
+      recordAction(playerIdx, '🖤 ワイルド古里 → ' + colorLabel(aiColor), 'black');
+      setLog(playerName + ' がワイルド古里！→ ' + colorLabel(aiColor), 'highlight');
       afterPlayCard(playerIdx);
     }
     renderAll();
     return;
   }
-
   if (card.special === 'draw2') {
-    const next = nextPlayerIndex(state.currentPlayer, state.direction);
-    for (let i = 0; i < 2; i++) {
+    var next = nextPlayerIndex(state.currentPlayer, state.direction);
+    for (var i = 0; i < 2; i++) {
       if (state.deck.length === 0) reshuffleDiscard();
       if (state.deck.length > 0) state.hands[next].push(state.deck.pop());
     }
-    recordAction(playerIdx, `＋２ JP`, card.color);
-    setLog(`${playerName} がJPを出した！${state.players[next].name} は2枚引きます`, 'highlight');
+    recordAction(playerIdx, '＋２ JP', card.color);
+    setLog(playerName + ' がJPを出した！' + state.players[next].name + ' は2枚引きます', 'highlight');
     afterPlayCard(playerIdx);
     renderAll();
     return;
   }
-
   if (card.special === 'reverse') {
     state.direction *= -1;
-    recordAction(playerIdx, `⟲ 栗原さん`, card.color);
-    setLog(`${playerName} が栗原さんを出した！順番が逆になります`, 'highlight');
+    recordAction(playerIdx, '⟲ 栗原さん', card.color);
+    setLog(playerName + ' が栗原さんを出した！順番が逆になります', 'highlight');
     afterPlayCard(playerIdx);
     renderAll();
     return;
   }
-
-  // Normal card
-  recordAction(playerIdx, `「${card.text}」`, card.color);
-  setLog(`${playerName} が「${card.text}」を出しました`, '');
+  recordAction(playerIdx, '「' + card.text + '」', card.color);
+  setLog(playerName + ' が「' + card.text + '」を出しました', '');
   afterPlayCard(playerIdx);
   renderAll();
 }
 
 function afterPlayCard(playerIdx) {
-  // Check win (no cards left + not a special card)
-  const hand = state.hands[playerIdx];
-  const lastCard = state.discard[state.discard.length - 1];
-
+  var hand = state.hands[playerIdx];
+  var lastCard = state.discard[state.discard.length - 1];
   if (hand.length === 0) {
     if (lastCard.type === 'special' || lastCard.type === 'wild') {
-      // Special card finish not allowed - give back the card
       hand.push(state.discard.pop());
       setLog('特殊カードでは上がれません！カードを戻します', 'error');
       renderAll();
       return;
     }
-    // Check fleet declaration
-    if (!state.fleetDeclared.includes(playerIdx)) {
-      // Penalty! Should have declared fleet
-      const penaltyCards = 2;
-      for (let i = 0; i < penaltyCards; i++) {
+    if (state.fleetDeclared.indexOf(playerIdx) === -1) {
+      for (var i = 0; i < 2; i++) {
         if (state.deck.length === 0) reshuffleDiscard();
         if (state.deck.length > 0) hand.push(state.deck.pop());
       }
-      setLog(`${state.players[playerIdx].name} がフリートを言い忘れた！2枚引きます`, 'error');
+      setLog(state.players[playerIdx].name + ' がフリートを言い忘れた！2枚引きます', 'error');
       advanceTurn();
       renderAll();
       return;
     }
-
-    // Win!
     state.gameOver = true;
-    setTimeout(() => showWin(playerIdx), 800);
+    setTimeout(function() { showWin(playerIdx); }, 800);
     return;
   }
-
-  // Check if player now has 1 card → need fleet
   if (hand.length === 1 && playerIdx !== 0) {
-    // AI auto-declares fleet
-    if (!state.fleetDeclared.includes(playerIdx)) {
-      state.fleetDeclared.push(playerIdx);
-      setLog(`${state.players[playerIdx].name}「フリート！！」`, 'success');
+    if (state.fleetDeclared.indexOf(playerIdx) === -1) {
+      if (Math.random() < 0.7) {
+        state.fleetDeclared.push(playerIdx);
+        setLog(state.players[playerIdx].name + '「フリート！！」', 'success');
+      } else {
+        state.calloutTargets.push(playerIdx);
+        setLog(state.players[playerIdx].name + ' が手札1枚に…フリート言った？👀', 'highlight');
+      }
     }
   }
-
   advanceTurn();
 }
 
 function advanceTurn() {
-  state.currentPlayer = nextPlayerIndex(state.currentPlayer, state.direction);
+  var next = nextPlayerIndex(state.currentPlayer, state.direction);
+  if (state.calloutTargets.indexOf(next) !== -1) {
+    state.calloutTargets = state.calloutTargets.filter(function(t) { return t !== next; });
+    if (state.fleetDeclared.indexOf(next) === -1) state.fleetDeclared.push(next);
+  }
+  state.currentPlayer = next;
   state.drawnThisTurn = false;
-
   if (!state.players[state.currentPlayer].isHuman) {
     renderAll();
-    setTimeout(aiTurn, 900);
+    setTimeout(function() {
+      if (!aiTryCallout()) aiTurn();
+    }, 600);
   } else {
     renderAll();
-    setLog(`あなたのターンです`, 'highlight');
+    setLog('あなたのターンです', 'highlight');
+    setTimeout(aiTryCallout, 400);
   }
 }
 
 function nextPlayerIndex(current, dir) {
-  const n = state.players.length;
+  var n = state.players.length;
   return (current + dir + n) % n;
 }
 
@@ -1286,35 +1278,69 @@ function drawCard() {
   if (state.gameOver) return;
   if (state.currentPlayer !== 0) return;
   if (state.drawnThisTurn) return;
-
   if (state.deck.length === 0) reshuffleDiscard();
   if (state.deck.length === 0) { setLog('山札がありません', 'error'); return; }
-
-  const drawn = state.deck.pop();
+  var drawn = state.deck.pop();
   state.hands[0].push(drawn);
   state.drawnThisTurn = true;
-  setLog(`1枚引きました「${drawn.text}」${canPlay(drawn, 0) ? ' ← 出せます！' : ''}`, '');
+  setLog('1枚引きました「' + drawn.text + '」' + (canPlay(drawn, 0) ? ' ← 出せます！' : ''), '');
   renderAll();
 }
 
 function endTurn() {
   if (!state.drawnThisTurn || state.currentPlayer !== 0) return;
-  setLog(`パスしました`, '');
+  setLog('パスしました', '');
   advanceTurn();
 }
 
 function declareFleet() {
-  if (!state.fleetDeclared.includes(0)) {
+  if (state.fleetDeclared.indexOf(0) === -1) {
     state.fleetDeclared.push(0);
-    setLog(`「フリート！！」宣言しました！`, 'success');
+    setLog('「フリート！！」宣言しました！', 'success');
     renderButtons();
   }
 }
 
+function calloutFleet() {
+  var targets = state.calloutTargets.filter(function(i) { return i !== 0; });
+  if (targets.length === 0) return;
+  applyCalloutPenalty(targets[0], 0);
+}
+
+function applyCalloutPenalty(targetIdx, callerIdx) {
+  state.calloutTargets = state.calloutTargets.filter(function(t) { return t !== targetIdx; });
+  var targetName = state.players[targetIdx].name;
+  var callerName = state.players[callerIdx].name;
+  for (var i = 0; i < 2; i++) {
+    if (state.deck.length === 0) reshuffleDiscard();
+    if (state.deck.length > 0) state.hands[targetIdx].push(state.deck.pop());
+  }
+  setLog(callerName + ' が指摘！' + targetName + ' はフリートを言い忘れた！2枚引きます 😱', 'error');
+  renderAll();
+}
+
+function aiTryCallout() {
+  if (state.calloutTargets.length === 0) return false;
+  for (var i = 1; i < state.players.length; i++) {
+    var targets = state.calloutTargets.filter(function(t) { return t !== i; });
+    if (targets.length === 0) continue;
+    if (Math.random() < 0.5) {
+      var target = targets[0];
+      var caller = i;
+      setTimeout(function() {
+        applyCalloutPenalty(target, caller);
+        if (!state.players[state.currentPlayer].isHuman) setTimeout(aiTurn, 700);
+      }, 400);
+      return true;
+    }
+  }
+  return false;
+}
+
 function reshuffleDiscard() {
   if (state.discard.length <= 1) return;
-  const top = state.discard.pop();
-  state.deck = shuffle([...state.discard]);
+  var top = state.discard.pop();
+  state.deck = shuffle(state.discard.slice());
   state.discard = [top];
 }
 
@@ -1326,7 +1352,7 @@ function showColorModal() {
 function chooseColor(color) {
   document.getElementById('colorModal').classList.remove('show');
   state.wildColor = color;
-  setLog(`色を「${colorLabel(color)}」に指定しました`, 'highlight');
+  setLog('色を「' + colorLabel(color) + '」に指定しました', 'highlight');
   afterPlayCard(0);
   renderAll();
 }
@@ -1335,39 +1361,30 @@ function chooseColor(color) {
 function aiTurn() {
   if (state.gameOver) return;
   if (state.players[state.currentPlayer].isHuman) return;
-
-  const pi = state.currentPlayer;
-  const hand = state.hands[pi];
-  const name = state.players[pi].name;
-
-  // Find playable cards
-  const playable = hand.map((c, i) => ({ card: c, idx: i })).filter(({ card }) => canPlay(card, pi));
-
+  var pi = state.currentPlayer;
+  var hand = state.hands[pi];
+  var name = state.players[pi].name;
+  var playable = [];
+  for (var i = 0; i < hand.length; i++) {
+    if (canPlay(hand[i], pi)) playable.push({ card: hand[i], idx: i });
+  }
   if (playable.length > 0) {
-    // Strategy: prefer text cards, avoid ending on special
-    let chosen = playable[0];
-    // Prefer non-special if possible
-    const textOpts = playable.filter(p => p.card.type === 'text');
+    var chosen = playable[0];
+    var textOpts = playable.filter(function(p) { return p.card.type === 'text'; });
     if (textOpts.length > 0) chosen = textOpts[Math.floor(Math.random() * textOpts.length)];
-
     playCard(pi, chosen.idx);
   } else {
-    // Draw
     if (state.deck.length === 0) reshuffleDiscard();
     if (state.deck.length > 0) {
-      const drawn = state.deck.pop();
+      var drawn = state.deck.pop();
       hand.push(drawn);
-      recordAction(pi, `📥 1枚引いた`, 'draw');
-      setLog(`${name} が1枚引きました`, '');
-
-      // Check if drawn card is playable
-      const drawnIdx = hand.length - 1;
+      recordAction(pi, '📥 1枚引いた', 'draw');
+      setLog(name + ' が1枚引きました', '');
+      var drawnIdx = hand.length - 1;
       if (canPlay(drawn, pi)) {
-        setTimeout(() => playCard(pi, drawnIdx), 600);
+        setTimeout(function() { playCard(pi, drawnIdx); }, 600);
       } else {
-        setTimeout(() => {
-          advanceTurn();
-        }, 600);
+        setTimeout(advanceTurn, 600);
       }
       renderAll();
       return;
@@ -1376,44 +1393,36 @@ function aiTurn() {
   }
 }
 
-function recordAction(playerIdx, text, color) {
-  state.lastActions[playerIdx] = { text, color };
+function aiChooseColor(playerIdx) {
+  var hand = state.hands[playerIdx];
+  var colorCount = { blue:0, red:0, yellow:0, green:0, orange:0 };
+  hand.forEach(function(c) { if (colorCount[c.color] !== undefined) colorCount[c.color]++; });
+  var best = 'blue', bestVal = -1;
+  Object.keys(colorCount).forEach(function(k) { if (colorCount[k] > bestVal) { best = k; bestVal = colorCount[k]; } });
+  return best;
 }
 
-function aiChooseColor(playerIdx) {
-  const hand = state.hands[playerIdx];
-  const colorCount = {};
-  ['blue','red','yellow','green','orange'].forEach(c => colorCount[c] = 0);
-  hand.forEach(c => { if (colorCount[c.color] !== undefined) colorCount[c.color]++; });
-  return Object.entries(colorCount).sort((a, b) => b[1] - a[1])[0][0];
+function recordAction(playerIdx, text, color) {
+  state.lastActions[playerIdx] = { text: text, color: color };
 }
 
 // ===== MISC =====
-function setLog(msg, type = '') {
-  const el = document.getElementById('logText');
+function setLog(msg, type) {
+  var el = document.getElementById('logText');
   el.textContent = msg;
-  el.className = 'log-text' + (type ? ` ${type}` : '');
+  el.className = 'log-text' + (type ? ' ' + type : '');
 }
 
 function showWin(playerIdx) {
-  document.getElementById('winnerName').textContent =
-    `🎉 ${state.players[playerIdx].name} の勝利！`;
+  document.getElementById('winnerName').textContent = '🎉 ' + state.players[playerIdx].name + ' の勝利！';
   showScreen('winScreen');
 }
 
-function showTitle() {
-  showScreen('titleScreen');
-}
+function showTitle() { showScreen('titleScreen'); }
+function hideTurnOverlay() { document.getElementById('turnOverlay').classList.remove('show'); }
+function toggleRules() { document.getElementById('rulesModal').classList.toggle('show'); }
 
-function hideTurnOverlay() {
-  document.getElementById('turnOverlay').classList.remove('show');
-}
-
-function toggleRules() {
-  document.getElementById('rulesModal').classList.toggle('show');
-}
-
-// Init setup screen
+// Init
 showSetup();
 renderAiNames();
 </script>
